@@ -1,0 +1,24 @@
+level: "world"
+areaLevel: 1
+pos:
+  startX: 0
+  startY: 0
+  startZ: 0
+  endX: 0
+  endY: 0
+  endZ: 0
+price: 1000.0
+resetTime(s): 300
+transfer:
+  x: 0
+  y: 0
+  z: 0
+transferMoney: 100.0
+key: true
+last-area: ""
+message: "§a新手矿区 一切发家致富的开始?\n 主要物资:>> 石头>> 木头"
+subMessage: "一切的开始..."
+buttonImage: "textures/items/diamond_pickaxe"
+spawnBlock:
+  1: 20
+  17: 20
