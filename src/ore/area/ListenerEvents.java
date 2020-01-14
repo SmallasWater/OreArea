@@ -50,18 +50,20 @@ public class ListenerEvents implements Listener {
 
     @EventHandler
     public void onReset(AreaResetEvent event){
-        for(Player player:Server.getInstance().getOnlinePlayers().values()){
-            String n = Tools.getPlayerTouchArea(player.getPosition());
-            if(n != null){
-                if(n.equals(event.getName())){
-                    AreaClass areaClass = AreaClass.getAreaClass(n);
-                    if(areaClass != null){
-                        player.teleport(areaClass.getTransfer());
-                        player.sendMessage(AreaMainClass.getLang("reset.area.message").replace("{name}",n));
+        AreaClass areaClass = AreaClass.getAreaClass(event.getName());
+        if(areaClass != null){
+            if(areaClass.isKey()){
+                for(Player player:Server.getInstance().getOnlinePlayers().values()){
+                    String n = Tools.getPlayerTouchArea(player.getPosition());
+                    if(n != null){
+                        if(n.equals(event.getName())){
+                            player.teleport(areaClass.getTransfer());
+                            player.sendMessage(AreaMainClass.getLang("reset.area.message").replace("{name}",n));
+                        }
                     }
+
                 }
             }
-
         }
     }
 
@@ -141,12 +143,14 @@ public class ListenerEvents implements Listener {
         }
         if(AreaMainClass.getInstance().isCanSendInventory()){
             if(item.length > 0){
-                event.setDrops(null);
-                for(Item item1:item){
-                    if(player.getInventory().canAddItem(item1)){
-                        player.getInventory().addItem(item1);
-                    }else{
-                        player.getLevel().dropItem(player,item1);
+                if(block.isBreakable(event.getItem())){
+                    event.setDrops(new Item[0]);
+                    for(Item item1:item){
+                        if(player.getInventory().canAddItem(item1)){
+                            player.getInventory().addItem(item1);
+                        }else{
+                            player.getLevel().dropItem(player,item1);
+                        }
                     }
                 }
             }

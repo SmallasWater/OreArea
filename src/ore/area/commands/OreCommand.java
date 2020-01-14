@@ -9,6 +9,7 @@ import ore.area.commands.area.*;
 import ore.area.commands.blocks.AddSuccessSubCommand;
 import ore.area.commands.blocks.CreateBlockSubCommand;
 import ore.area.commands.player.SellInvSubCommand;
+import ore.area.commands.player.ShowAreaSubCommand;
 import ore.area.commands.player.TeleportSubCommand;
 import ore.area.commands.setting.*;
 import ore.area.windows.CreateWindow;
@@ -46,6 +47,8 @@ public class OreCommand extends PluginCommand<AreaMainClass> {
         this.loadSubCommand(new CreateBlockSubCommand(plugin));
         this.loadSubCommand(new AddSuccessSubCommand(plugin));
         this.loadSubCommand(new ReloadSubCommand(plugin));
+        this.loadSubCommand(new ClearSubCommand(plugin));
+        this.loadSubCommand(new ShowAreaSubCommand(plugin));
     }
 
     private void loadSubCommand(SubCommand cmd) {
@@ -93,39 +96,49 @@ public class OreCommand extends PluginCommand<AreaMainClass> {
             if(sender.isOp()){
                 if(args.length > 1){
                     if("2".equals(args[1])){
-                        sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 2 共计 2页 §a<<");
+                        sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 2 共计 3页 §a<<");
                         sender.sendMessage("§a/kq tp <名称>§7传送到矿区");
-                        sender.sendMessage("§a/kq settransfer <名称> §7将脚底坐标设置为矿区传送点");
-                        sender.sendMessage("§a/kq setprice <名称> <价格> §7设置传送到矿区的价格");
-                        sender.sendMessage("§a/kq setmoney <名称> <价格> §7设置解锁矿区价格");
-                        sender.sendMessage("§a/kq setlast <名称> <矿区名> §7设置矿区前置");
-                        sender.sendMessage("§a/kq 刷新 <名称> §7刷新矿区");
+                        sender.sendMessage("§a/kq settransfer <矿区名称> §7将脚底坐标设置为矿区传送点");
+                        sender.sendMessage("§a/kq setprice <矿区名称> <价格> §7设置传送到矿区的价格");
+                        sender.sendMessage("§a/kq setmoney <矿区名称> <价格> §7设置解锁矿区价格");
+                        sender.sendMessage("§a/kq setlast <矿区名称> <矿区名> §7设置矿区前置");
+                        sender.sendMessage("§a/kq 刷新 <矿区名称> §7刷新矿区");
                         sender.sendMessage("§a/kq cb <金钱> §7将手中的方块设置回收价格");
                         sender.sendMessage("§a/kq sellinv §7出售背包矿物");
                         sender.sendMessage("§a/kq success <数量> §7添加手中方块破坏成就个数");
-                        sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 2 共计 2页 §a<<");
+                        sender.sendMessage("§a/kq clean <矿区名称> §7清空矿区方块");
+                        sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 2 共计 3页 §a<<");
                         return true;
                     }
+                    if("3".equals(args[1])){
+                        sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 3 共计 3页 §a<<");
+                        sender.sendMessage("§a/kq showMax §7弹出当前解锁最高等级矿区GUI");
+                        sender.sendMessage("§a/kq showNext §7弹出解锁当前最高等级矿区下一个矿区GUI");
+                        sender.sendMessage("§a/kq show <矿区名称> §7弹出矿区GUI");
+                        sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 3 共计 3页 §a<<");
+                    }
                 }
-                sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 1 共计 2页 §a<<");
+                sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 1 共计 3页 §a<<");
                 sender.sendMessage("§a/kq §7打开矿区GUI");
                 sender.sendMessage("§a/kq pos1 §7设置矿区第一点");
                 sender.sendMessage("§a/kq pos2 §7设置矿区第二点");
-                sender.sendMessage("§a/kq create <名称> §7创建矿区");
-                sender.sendMessage("§a/kq tp <矿区名> §7传送到矿区");
-                sender.sendMessage("§a/kq open <名称> §7开放一个矿区");
-                sender.sendMessage("§a/kq close <名称> §7关闭一个矿区");
-                sender.sendMessage("§a/kq delete <名称> §7删除矿区");
+                sender.sendMessage("§a/kq create <矿区名称> §7创建矿区");
+                sender.sendMessage("§a/kq tp <矿区名称> §7传送到矿区");
+                sender.sendMessage("§a/kq open <矿区名称> §7开放一个矿区");
+                sender.sendMessage("§a/kq close <矿区名称> §7关闭一个矿区");
+                sender.sendMessage("§a/kq delete <矿区名称> §7删除矿区");
                 sender.sendMessage("§a/kq reload §7重新加载配置");
-                sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 1 共计 2页 §a<<");
+                sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 1 共计 3页 §a<<");
             }else{
                 sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 1 共计 1页 §a<<");
                 sender.sendMessage("§a/kq §7打开矿区GUI");
-                sender.sendMessage("§a/kq tp <矿区名> §7传送到矿区");
+                sender.sendMessage("§a/kq tp <矿区名称> §7传送到矿区");
                 sender.sendMessage("§a/kq sellinv §7出售背包矿物");
+                sender.sendMessage("§a/kq showMax §7弹出当前解锁最高等级矿区GUI");
+                sender.sendMessage("§a/kq showNext §7弹出解锁当前最高等级矿区下一个矿区GUI");
+                sender.sendMessage("§a/kq show <矿区名称> §7弹出矿区GUI");
                 sender.sendMessage("§a§l >> §eHelp for OreArea 当前页: 1 共计 1页 §a<<");
             }
-
         }
         return true;
     }

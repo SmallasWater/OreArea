@@ -7,6 +7,7 @@ import cn.nukkit.block.Block;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Position;
 import cn.nukkit.plugin.PluginBase;
+import cn.nukkit.scheduler.Task;
 import cn.nukkit.utils.Config;
 import ore.area.commands.OreCommand;
 import ore.area.utils.BossBar;
@@ -43,7 +44,7 @@ public class AreaMainClass extends PluginBase {
 
     private static Config blocks;
 
-    private boolean canSendInventory = true;
+    private boolean canSendInventory;
 
     public LinkedHashMap<String, AreaClass> areas = new LinkedHashMap<>();
 
@@ -72,7 +73,7 @@ public class AreaMainClass extends PluginBase {
     @Override
     public void onEnable() {
         if(Server.getInstance().getPluginManager().getPlugin("AutoUpData") != null){
-            if(AutoData.defaultUpData(this,getFile(),"DreamServer","OreArea")){
+            if(AutoData.defaultUpData(this,getFile(),"SmallasWater","OreArea")){
                 return;
             }
         }

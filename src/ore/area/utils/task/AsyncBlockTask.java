@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class AsyncBlockTask extends AsyncTask {
 
-    private AreaClass aClass;
+    AreaClass aClass;
 
     public AsyncBlockTask(AreaClass aClass){
         this.aClass = aClass;

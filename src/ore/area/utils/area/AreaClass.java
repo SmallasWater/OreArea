@@ -8,10 +8,12 @@ import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
 import cn.nukkit.utils.Config;
 import ore.area.AreaMainClass;
+import ore.area.events.AreaCleanEvent;
 import ore.area.events.AreaResetEvent;
 import ore.area.utils.Tools;
 import ore.area.utils.task.AreaLoadTask;
 import ore.area.utils.task.AsyncBlockTask;
+import ore.area.utils.task.AsyncCleanBlockTask;
 
 
 import java.io.File;
@@ -323,13 +325,31 @@ public class AreaClass {
         return false;
     }
 
+    public static AreaClass getAreaClassByLevel(int level){
+        for (AreaClass areaClass:AreaMainClass.getInstance().areas.values()){
+            if(areaClass.getLevel() == level){
+                return areaClass;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 清空方块
+     * */
+    public synchronized void cleanBlock(){
+        AreaCleanEvent event = new AreaCleanEvent(name,AreaMainClass.getInstance());
+        Server.getInstance().getPluginManager().callEvent(event);
+        Server.getInstance().getScheduler().scheduleAsyncTask(AreaMainClass.getInstance(),new AsyncCleanBlockTask(this));
+    }
+
     /**
      * 为矿区填充方块
      * */
-    public void setBlock(){
-        AreaResetEvent event = new AreaResetEvent(AreaMainClass.getInstance(),name);
-        Server.getInstance().getPluginManager().callEvent(event);
+    public synchronized void setBlock(){
         if(isKey()){
+            AreaResetEvent event = new AreaResetEvent(AreaMainClass.getInstance(),name);
+            Server.getInstance().getPluginManager().callEvent(event);
             Server.getInstance().getScheduler().scheduleAsyncTask(AreaMainClass.getInstance(),new AsyncBlockTask(this));
         }
     }

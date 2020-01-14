@@ -53,11 +53,12 @@ public class ListenerWindow implements Listener {
                     PlayerClass playerClass = PlayerClass.getPlayerClass(player);
                     area = AreaMainClass.getInstance().clickArea.get(player);
                     boolean canTransfer = !AreaMainClass.getInstance().isKeyCanOpen();
-                    if(!area.isKey()){
-                        Tools.sendMessage(player,Tools.getLanguage("transfer.area.lock").replace("{name}",area.getName()));
-                        return;
-                    }
+
                     if(Integer.parseInt(data) == 0){
+                        if(!area.isKey()){
+                            Tools.sendMessage(player,Tools.getLanguage("transfer.area.lock").replace("{name}",area.getName()));
+                            return;
+                        }
                         if(!canTransfer){
                             if(!playerClass.canKey(area.getName())){
                                 if(!"".equals(area.getLastArea())){

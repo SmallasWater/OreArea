@@ -38,7 +38,7 @@ public class CreateWindow {
         player.showFormWindow(simple,MENU);
     }
 
-    static void sendSub(Player player){
+    public static void sendSub(Player player){
         if(AreaMainClass.getInstance().clickArea.containsKey(player)){
             AreaClass areaClass = AreaMainClass.getInstance().clickArea.get(player);
             PlayerClass playerClass = PlayerClass.getPlayerClass(player);

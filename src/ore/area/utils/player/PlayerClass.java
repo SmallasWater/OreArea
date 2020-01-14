@@ -91,7 +91,7 @@ public class PlayerClass {
     }
 
     public int getMaxAreaLevel(){
-        int i = 1;
+        int i = 0;
         for(String a:keyAreas){
             AreaClass areaClass = AreaClass.getAreaClass(a);
             if(areaClass != null){
@@ -101,6 +101,19 @@ public class PlayerClass {
             }
         }
         return i;
+    }
+
+    public AreaClass getMaxLevelArea(){
+        int i = getMaxAreaLevel();
+        for(String a:keyAreas){
+            AreaClass areaClass = AreaClass.getAreaClass(a);
+            if(areaClass != null){
+                if (areaClass.getLevel() == i){
+                    return areaClass;
+                }
+            }
+        }
+        return null;
     }
 
     @Override
