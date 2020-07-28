@@ -28,5 +28,5 @@ message: "§a新手矿区 一切发家致富的开始?\n 主要物资:>> 石头>
 subMessage: "一切的开始..."
 buttonImage: "textures/items/diamond_pickaxe"
 spawnBlock:
-  1: 20
-  17: 20
+  "1": 20
+  "17": 20
