@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="OreArea_v1.3.1">
-    <output-path>F:/Nukkit开服/plugins</output-path>
-    <root id="archive" name="OreArea_v1.3.1.jar">
-      <element id="module-output" name="OreArea" />
-      <element id="dir-copy" path="$PROJECT_DIR$/resources" />
-    </root>
-  </artifact>
-</component>
