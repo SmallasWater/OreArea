@@ -5,6 +5,9 @@ import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
 import ore.area.utils.area.AreaClass;
 
+/**
+ * @author SmallasWater
+ */
 public class DropSubCommand extends SubCommand {
 
     public DropSubCommand(AreaMainClass plugin) {
@@ -28,7 +31,7 @@ public class DropSubCommand extends SubCommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        if(args.length == 2){
+        if(args.length > 1){
             String name = args[1];
             AreaClass areaClass = AreaClass.getAreaClass(name);
             if(areaClass != null){
@@ -46,6 +49,6 @@ public class DropSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return null;
+        return "§a/kq drop <矿区名称> §7设置矿区死亡是否掉落";
     }
 }

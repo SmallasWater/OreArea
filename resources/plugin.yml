@@ -1,6 +1,6 @@
 name: OreArea
 main: ore.area.AreaMainClass
-version: 1.3.0
+version: 1.3.1
 api:
   - 1.0.9
 author: 若水
@@ -51,7 +51,9 @@ permissions:
   ore.area.kq.addcount:
     description: "增加进入次数"
     default: op
-
+  ore.area.kq.setLevel:
+    description: "设置矿区等级"
+    default: op
 
 
 

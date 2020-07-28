@@ -5,6 +5,9 @@ import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
 import ore.area.utils.area.AreaClass;
 
+/**
+ * @author SmallasWater
+ */
 public class PvpSubCommand extends SubCommand {
     public PvpSubCommand(AreaMainClass plugin) {
         super(plugin);
@@ -45,6 +48,6 @@ public class PvpSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return null;
+        return "§a/kq pvp <矿区名称> §7设置矿区是否允许PVP";
     }
 }
