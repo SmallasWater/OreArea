@@ -6,6 +6,9 @@ import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
 import ore.area.utils.area.DefaultBlockClass;
 
+/**
+ * @author SmallasWater
+ */
 public class SellInvSubCommand extends SubCommand {
     public SellInvSubCommand(AreaMainClass plugin) {
         super(plugin);

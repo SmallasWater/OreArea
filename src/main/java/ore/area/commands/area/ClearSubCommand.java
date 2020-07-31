@@ -5,6 +5,9 @@ import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
 import ore.area.utils.area.AreaClass;
 
+/**
+ * @author SmallasWater
+ */
 public class ClearSubCommand extends SubCommand {
     public ClearSubCommand(AreaMainClass plugin) {
         super(plugin);
