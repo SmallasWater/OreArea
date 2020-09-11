@@ -18,7 +18,7 @@ public class AddSuccessSubCommand extends SubCommand {
 
     @Override
     public boolean canUse(CommandSender sender) {
-        return sender.isOp();
+        return sender.hasPermission("ore.area.kq.success") && sender.isPlayer();
     }
 
     @Override

@@ -16,7 +16,7 @@ public class SellInvSubCommand extends SubCommand {
 
     @Override
     public boolean canUse(CommandSender sender) {
-        return sender.hasPermission("ore.area.kq.sellinv");
+        return sender.hasPermission("ore.area.kq.sellinv") && sender.isPlayer();
     }
 
     @Override
