@@ -239,10 +239,10 @@ public class Tools {
         for(int i=0;i<=90;i+=3){
             x = s * Math.cos(Math.toRadians(i));
             z = s * Math.sin(Math.toRadians(i));
-            pos.add(new double[]{x,0,z});
-            pos.add(new double[]{-z,0,x});
-            pos.add(new double[]{-x,0,-z});
-            pos.add(new double[]{z,0,-x});
+            pos.add(new double[]{x,2,z});
+            pos.add(new double[]{-z,2,x});
+            pos.add(new double[]{-x,2,-z});
+            pos.add(new double[]{z,2,-x});
         }
         return pos;
     }
