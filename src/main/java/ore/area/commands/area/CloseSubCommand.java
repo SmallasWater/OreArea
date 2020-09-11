@@ -53,6 +53,11 @@ public class CloseSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq close <矿区名称> §7关闭一个矿区";
+        return "§a/kq close <矿区名称>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return " §7将矿区关闭 若矿区内存在玩家 则将玩家传送到服务器默认出生点 \n§c条件: [必须保证矿区存在] §2权限组: (ore.area.kq.close)";
     }
 }

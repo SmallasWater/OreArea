@@ -49,6 +49,11 @@ public class SetLastSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setlast <矿区名称> <矿区名> §7设置矿区前置";
+        return "§a/kq setlast <矿区名称> <矿区名>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7设置解锁矿区前首先解锁的矿区 [玩家解锁此矿区前，首先解锁的矿区] \n§c条件: [需设置矿区名,需设置矿区名] §2权限组: (ore.area.kq.setlast)";
     }
 }

@@ -15,7 +15,7 @@ public class PvpSubCommand extends SubCommand {
 
     @Override
     public boolean canUse(CommandSender sender) {
-        return sender.isOp();
+        return sender.hasPermission("ore.area.kq.pvp");
     }
 
     @Override
@@ -48,6 +48,11 @@ public class PvpSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq pvp <矿区名称> §7设置矿区是否允许PVP";
+        return "§a/kq pvp <矿区名称>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7设置是否允许玩家在矿区内PVP \n§c条件: [需设置矿区名] §2权限组: (ore.area.kq.pvp)";
     }
 }

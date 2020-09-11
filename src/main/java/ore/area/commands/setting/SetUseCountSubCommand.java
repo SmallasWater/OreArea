@@ -15,7 +15,7 @@ public class SetUseCountSubCommand extends SubCommand {
 
     @Override
     public boolean canUse(CommandSender sender) {
-        return sender.hasPermission("ore.area.kq.addcount");
+        return sender.hasPermission("ore.area.kq.usecount");
     }
 
     @Override
@@ -56,6 +56,11 @@ public class SetUseCountSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq sc <矿区名称> <次数> §7设置矿区进入次数";
+        return "§a/kq sc <矿区名称> <次数>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7设置矿区可以进入的次数 若次数设置 -1 则不限制玩家的进入次数 \n§c条件: [需设置矿区名,需设置整数次数] §2权限组: (ore.area.kq.usecount)";
     }
 }

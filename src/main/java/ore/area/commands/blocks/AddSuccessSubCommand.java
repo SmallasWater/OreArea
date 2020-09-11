@@ -8,6 +8,9 @@ import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
 import ore.area.utils.area.DefaultBlockClass;
 
+/**
+ * @author SmallasWater
+ */
 public class AddSuccessSubCommand extends SubCommand {
     public AddSuccessSubCommand(AreaMainClass plugin) {
         super(plugin);
@@ -59,6 +62,11 @@ public class AddSuccessSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq success <数量> §7添加手中方块破坏成就个数";
+        return "§a/kq success <数量>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return " §7将手中的方块id设置为破坏次数成就 设置成功后将记录玩家破坏此方块的次数 \n§c条件: [需设置破坏次数,需手持方块,在游戏内执行] §2权限组: (ore.area.kq.success)";
     }
 }

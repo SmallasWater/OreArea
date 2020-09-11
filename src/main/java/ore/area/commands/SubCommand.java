@@ -1,6 +1,7 @@
 package ore.area.commands;
 
 
+import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import ore.area.AreaMainClass;
@@ -55,8 +56,15 @@ public abstract class SubCommand {
 
     /**
      * 帮助信息
+     * @return 帮助指令
      * */
     public abstract String getHelp();
+
+    /**
+     * 指令的详细信息
+     * @return 帮助指令
+     * */
+    public abstract String helpMessage();
 
 
 }

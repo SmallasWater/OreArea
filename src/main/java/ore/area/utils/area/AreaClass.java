@@ -416,6 +416,16 @@ public class AreaClass {
         return null;
     }
 
+    public static int getMaxAreaLevel(){
+        int level = 0;
+        for (AreaClass areaClass:AreaMainClass.getInstance().areas.values()){
+            if(areaClass.getLevel() > level) {
+                level = areaClass.getLevel();
+            }
+        }
+        return level;
+    }
+
     /**
      * 清空方块
      * */

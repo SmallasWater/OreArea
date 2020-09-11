@@ -1,6 +1,6 @@
 name: OreArea
 main: ore.area.AreaMainClass
-version: 1.3.1
+version: 1.3.2
 api:
   - 1.0.9
 author: 若水
@@ -54,8 +54,33 @@ permissions:
   ore.area.kq.setLevel:
     description: "设置矿区等级"
     default: op
-
-
+  ore.area.kq.clear:
+    description: "清空矿区"
+    default: op
+  ore.area.kq.reload:
+    description: "重载配置文件"
+    default: op
+  ore.area.kq.success:
+    description: "设置方块成就"
+    default: op
+  ore.area.kq.cb:
+    description: "设置方块回收价格"
+    default: op
+  ore.area.kq.sellinv:
+    description: "回收玩家背包内方块"
+    default: true
+  ore.area.kq.show:
+    description: "让执行者显示矿区GUI"
+    default: true
+  ore.area.kq.drop:
+    description: "设置矿区是否死亡掉落"
+    default: op
+  ore.area.kq.pvp:
+    description: "设置矿区是否允许PVP"
+    default: op
+  ore.area.kq.usecount:
+    description: "设置矿区的使用次数"
+    default: op
 
 
 

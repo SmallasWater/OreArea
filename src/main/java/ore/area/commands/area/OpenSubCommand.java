@@ -50,6 +50,11 @@ public class OpenSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq open <矿区名称> §7开放一个矿区";
+        return "§a/kq open <矿区名称> ";
+    }
+
+    @Override
+    public String helpMessage() {
+        return " §7开放一个矿区 让玩家可以重新使用矿区 \n§c条件: [必须保证矿区存在§c] §2权限组: (ore.area.kq.open)";
     }
 }

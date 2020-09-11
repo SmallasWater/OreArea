@@ -50,6 +50,11 @@ public class TransferSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq settransfer <矿区名称> §7将脚底坐标设置为矿区传送点";
+        return "§a/kq settransfer <矿区名称>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7设置矿区的传送点坐标 玩家传送矿区时将传送到此坐标 \n§c条件: [在游戏内设置,需设置矿区名] §2权限组: (ore.area.kq.settransfer)";
     }
 }

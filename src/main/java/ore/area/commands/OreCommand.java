@@ -108,14 +108,14 @@ public class OreCommand extends PluginCommand<AreaMainClass> {
             });
             if (helps.size() > 0) {
                 int page = 1;
-                int maxPage = (int) (helps.size() % PAGE_COUNT != 0 ? Math.floor(helps.size() / PAGE_COUNT) + 1 : Math.floor(helps.size() / PAGE_COUNT));
+                int maxPage = (int)  Math.ceil(helps.size() / PAGE_COUNT);
                 if (args.length > 1) {
                     boolean pass = false;
                     String command = args[1];
                     for(ore.area.commands.SubCommand subCommand: helps){
                         if(subCommand.getName().contains(command) || Arrays.asList(subCommand.getAliases()).contains(command)){
                             pass = true;
-                            sender.sendMessage(subCommand.getHelp());
+                            sender.sendMessage(subCommand.helpMessage());
                         }
                     }
                     if(pass){

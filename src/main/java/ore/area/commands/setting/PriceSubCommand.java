@@ -59,6 +59,11 @@ public class PriceSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setprice <矿区名称> <价格> §7设置传送到矿区的价格";
+        return "§a/kq setprice <矿区名称> <价格>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7设置玩家传送到矿区的价格[使用UI传送]  \n§c条件: [需设置矿区名,需设置数值价格] §2权限组: (ore.area.kq.setmoney)";
     }
 }

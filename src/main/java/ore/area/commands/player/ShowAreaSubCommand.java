@@ -18,7 +18,7 @@ public class ShowAreaSubCommand extends SubCommand {
 
     @Override
     public boolean canUse(CommandSender sender) {
-        return sender.isPlayer();
+        return sender.hasPermission("ore.area.kq.show");
     }
 
     @Override
@@ -53,15 +53,23 @@ public class ShowAreaSubCommand extends SubCommand {
                     }
                     break;
                 case "showNext":
+                case "下一级":
+                case "next":
                      areaClass = AreaClass.getAreaClassByLevel(playerClass.getMaxAreaLevel()+1);
                     if(areaClass != null){
                         AreaMainClass.getInstance().clickArea.put((Player) sender,areaClass);
                         CreateWindow.sendSub((Player) sender);
                     }else{
+                        if(AreaClass.getMaxAreaLevel() == playerClass.getMaxAreaLevel()){
+                            sender.sendMessage("§e>>§a您当前到达矿区的最高等级啦~~");
+                            return true;
+                        }
                         sender.sendMessage("§e>>§c不存在等级为 "+playerClass.getMaxAreaLevel()+1+"的矿区..");
                     }
                     break;
                 case "showMax":
+                case "当前":
+                case "new":
                     areaClass = AreaClass.getAreaClassByLevel(playerClass.getMaxAreaLevel());
                     if(areaClass != null){
                         AreaMainClass.getInstance().clickArea.put((Player) sender,areaClass);
@@ -78,6 +86,14 @@ public class ShowAreaSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq <show/showNext/showMax> <矿区名称(show)> §7弹出矿区GUI";
+        return "§a/kq <show/showNext/showMax> <矿区名称(show)>";
+    }
+    @Override
+    public String helpMessage() {
+        return " §7弹出GUI 可配合菜单 NPC 使用 " +
+                "\nshow: 根据名字显示矿区 指令格式:/kq show <矿区名称> §c条件: [在游戏内执行] " +
+                "\nshowNext: 显示玩家当前解锁等级的下一等级矿区 指令格式:/kq showNext §c条件: [在游戏内执行,需保证等级存在] "+
+                "\nshowNext: 显示玩家当前等级的矿区 指令格式:/kq showMax §c条件: [在游戏内执行,需保证等级存在] "+
+                "\n §2权限组: (ore.area.kq.show)";
     }
 }

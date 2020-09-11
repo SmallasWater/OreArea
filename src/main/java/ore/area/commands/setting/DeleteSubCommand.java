@@ -47,6 +47,11 @@ public class DeleteSubCommand  extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq delete <矿区名称> §7删除矿区";
+        return "§a/kq delete <矿区名称>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7删除  \n§c条件: [需设置玩家名，需设置矿区名，需设置使用次数] §2权限组: (ore.area.kq.addcount)";
     }
 }

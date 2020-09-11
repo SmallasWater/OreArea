@@ -64,4 +64,8 @@ public class TeleportSubCommand  extends SubCommand {
     public String getHelp() {
         return "§a/kq tp <名称>§7传送到矿区";
     }
+    @Override
+    public String helpMessage() {
+        return " §7传送到指定名称的矿区  \n§c条件: [在游戏内执行] §2权限组: (ore.area.kq.sellinv)";
+    }
 }

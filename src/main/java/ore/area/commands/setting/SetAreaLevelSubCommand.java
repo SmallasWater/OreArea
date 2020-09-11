@@ -63,6 +63,11 @@ public class SetAreaLevelSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setLevel <矿区名称> <等级> §7设置矿区等级";
+        return "§a/kq setLevel <矿区名称> <等级>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7设置矿区的等级 [玩家解锁此矿区后，会获得相应的等级] \n§c条件: [需设置矿区名,需设置整数等级] §2权限组: (ore.area.kq.setLevel)";
     }
 }

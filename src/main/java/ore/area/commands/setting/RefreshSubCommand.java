@@ -6,6 +6,10 @@ import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
 import ore.area.utils.area.AreaClass;
 
+
+/**
+ * @author SmallasWater
+ */
 public class RefreshSubCommand extends SubCommand {
     public RefreshSubCommand(AreaMainClass plugin) {
         super(plugin);
@@ -34,9 +38,9 @@ public class RefreshSubCommand extends SubCommand {
             if(areaClass != null){
                 areaClass.setBlock();
                 sender.sendMessage("§e>> §a矿区"+name+"刷新成功");
-                String bost = AreaMainClass.getLang("area.refresh.broadcast","§d {name} 矿区刷新啦..").replace("{name}",areaClass.getName());
-                if(!"".equalsIgnoreCase(bost)) {
-                    Server.getInstance().broadcastMessage(bost);
+                String bastMessage = AreaMainClass.getLang("area.refresh.broadcast","§d {name} 矿区刷新啦..").replace("{name}",areaClass.getName());
+                if(!"".equalsIgnoreCase(bastMessage)) {
+                    Server.getInstance().broadcastMessage(bastMessage);
                 }
                 return true;
             }else{
@@ -49,6 +53,11 @@ public class RefreshSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq 刷新 <矿区名称> §7刷新矿区";
+        return "§a/kq refresh <矿区名称>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7刷新矿区内的方块 \n§c条件: [需设置矿区名] §2权限组: (ore.area.kq.refresh)";
     }
 }

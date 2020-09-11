@@ -53,6 +53,11 @@ public class SetUseTimeSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setut <矿区名称> <使用时间(秒) -1为永久> §7设置玩家在矿区的使用时间";
+        return "§a/kq setut <矿区名称> <使用时间(秒) -1为永久>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return "§7设置玩家在矿区内的使用时间 [每个玩家使用时间为独立的] 使用时间单位为: 秒 若设置为 -1 则不限制玩家的使用时间 \n§c条件: [需设置矿区名,需设置整数时间] §2权限组: (ore.area.kq.setUseTime)";
     }
 }

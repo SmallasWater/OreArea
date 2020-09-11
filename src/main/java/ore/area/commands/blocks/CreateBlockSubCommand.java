@@ -18,7 +18,7 @@ public class CreateBlockSubCommand extends SubCommand {
 
     @Override
     public boolean canUse(CommandSender sender) {
-        return sender.isOp() && sender.isPlayer();
+        return sender.hasPermission("ore.area.kq.cb") && sender.isPlayer();
     }
 
     @Override
@@ -56,6 +56,11 @@ public class CreateBlockSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq cb <金钱> §7将手中的方块设置回收价格";
+        return "§a/kq cb <金钱>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return " §7设置手持方块§l掉落物§r§7的回收价格  \n§c条件: [需设置价格,需手持方块,在游戏内执行] §2权限组: (ore.area.kq.cb)";
     }
 }

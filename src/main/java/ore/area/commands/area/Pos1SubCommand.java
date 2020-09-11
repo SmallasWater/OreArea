@@ -50,6 +50,10 @@ public class Pos1SubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq pos1 §7设置矿区第一点";
+        return "§a/kq pos1";
+    }
+    @Override
+    public String helpMessage() {
+        return " §7设置矿区第一点  设置成功需要到另一个位置设置第二点来划定范围 \n§c条件: [在游戏内执行§c] §2权限组: (ore.area.kq.pos)";
     }
 }

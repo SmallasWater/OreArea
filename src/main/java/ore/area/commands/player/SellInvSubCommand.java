@@ -16,7 +16,7 @@ public class SellInvSubCommand extends SubCommand {
 
     @Override
     public boolean canUse(CommandSender sender) {
-        return sender.isPlayer();
+        return sender.hasPermission("ore.area.kq.sellinv");
     }
 
     @Override
@@ -39,6 +39,11 @@ public class SellInvSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq sellinv §7出售背包矿物";
+        return "§a/kq sellinv";
+    }
+
+    @Override
+    public String helpMessage() {
+        return " §7出售背包内设置的掉落物价格  \n§c条件: [在游戏内执行] §2权限组: (ore.area.kq.sellinv)";
     }
 }

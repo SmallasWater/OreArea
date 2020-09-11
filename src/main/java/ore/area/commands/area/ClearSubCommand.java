@@ -1,5 +1,6 @@
 package ore.area.commands.area;
 
+import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
@@ -15,7 +16,7 @@ public class ClearSubCommand extends SubCommand {
 
     @Override
     public boolean canUse(CommandSender sender) {
-        return sender.isOp();
+        return sender.hasPermission("ore.area.kq.clear");
     }
 
     @Override
@@ -45,6 +46,11 @@ public class ClearSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq clean <矿区名称> §7清空矿区方块";
+        return "§a/kq clean <矿区名称>";
+    }
+
+    @Override
+    public String helpMessage() {
+        return " §7清空矿区内的所有方块 \n§c条件: [必须保证矿区存在] §2权限组: (ore.area.kq.clear)";
     }
 }

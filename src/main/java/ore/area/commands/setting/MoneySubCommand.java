@@ -61,4 +61,9 @@ public class MoneySubCommand extends SubCommand {
     public String getHelp() {
         return "§a/kq setmoney <矿区名称> <价格> §7设置解锁矿区价格";
     }
+
+    @Override
+    public String helpMessage() {
+        return "§7设置解锁矿区所花费的金钱  \n§c条件: [需设置矿区名,需设置数值价格] §2权限组: (ore.area.kq.setmoney)";
+    }
 }

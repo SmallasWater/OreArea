@@ -254,7 +254,7 @@ public class Tools {
             map.put(c.getName(),c.getLevel());
         }
         List<Map.Entry<String,Integer>> list = new ArrayList<>(map.entrySet());
-        list.sort(Comparator.comparing(Map.Entry::getValue));
+        list.sort(Map.Entry.comparingByValue());
         for(Map.Entry<String,Integer> mapping:list){
             areaClass.add(AreaClass.getAreaClass(mapping.getKey()));
         }
