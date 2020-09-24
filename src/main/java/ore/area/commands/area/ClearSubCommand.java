@@ -21,7 +21,7 @@ public class ClearSubCommand extends SubCommand {
 
     @Override
     public String getName() {
-        return "清空";
+        return isChinese()?"清空":"clean";
     }
 
     @Override
@@ -36,9 +36,9 @@ public class ClearSubCommand extends SubCommand {
             AreaClass areaClass = AreaClass.getAreaClass(areaName);
             if(areaClass != null){
                 areaClass.cleanBlock();
-                sender.sendMessage("§e>> §a"+areaName+"矿区已清空!");
+                sender.sendMessage(isChinese()?"§e>> §a"+areaName+"矿区已清空!":"§e>> §a"+areaName+"OreArea is Clean!");
             }else{
-                sender.sendMessage("§e>> §c抱歉,"+areaName+"矿区不存在..");
+                sender.sendMessage(isChinese()?"§e>> §c抱歉,"+areaName+"矿区不存在..":"§e>> §cSorry,"+areaName+"OreArea is not exists..");
             }
         }
         return false;
@@ -46,11 +46,11 @@ public class ClearSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq clean <矿区名称>";
+        return "§a/kq clean <"+(isChinese()?"矿区名称":"name")+">";
     }
 
     @Override
     public String helpMessage() {
-        return " §7清空矿区内的所有方块 \n§c条件: [必须保证矿区存在] §2权限组: (ore.area.kq.clear)";
+        return isChinese()?"§7清空矿区内的所有方块 \n§c条件: [必须保证矿区存在] §2权限组: (ore.area.kq.clear)":"§7Clean all blocks for OreArea \n§cterm: [The existence of mining area must be ensured] §2permissions: (ore.area.kq.clear)";
     }
 }

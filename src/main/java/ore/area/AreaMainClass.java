@@ -67,6 +67,9 @@ public class AreaMainClass extends PluginBase {
     public LinkedHashMap<Player,LinkedList< Position>> pos = new LinkedHashMap<>();
 
 
+    public static String defaultLanguage = "chs";
+
+    private Config config;
 
 
     @Override
@@ -80,8 +83,48 @@ public class AreaMainClass extends PluginBase {
         if(Server.getInstance().getPluginManager().getPlugin("Tips") != null){
             Api.registerVariables("orearea", OreAreaVariable.class);
         }
-        saveDefaultConfig();
-        reloadConfig();
+        if(!new File(this.getDataFolder()+"/config.yml").exists()){
+            this.saveResource("language/"+defaultLanguage+"/config.yml","config.yml",false);
+            config = new Config(this.getDataFolder()+"/config.yml",Config.YAML);
+        }else{
+            config = new Config(this.getDataFolder()+"/config.yml",Config.YAML);
+            defaultLanguage = config.getString("语言");
+            if("".equalsIgnoreCase(defaultLanguage)){
+                defaultLanguage = config.getString("language");
+                if("".equalsIgnoreCase(defaultLanguage)){
+                    defaultLanguage = "chs";
+                }else if(isChinese()){
+                    if(new File(this.getDataFolder()+"/language.yml").exists()){
+                        if(new File(this.getDataFolder()+"/language.yml").delete()) {
+                            this.getLogger().info("delete language.yml fail");
+                        }
+                    }
+                    this.saveResource("language/"+defaultLanguage+"/config.yml","config.yml",false);
+                    config = new Config(this.getDataFolder()+"/config.yml",Config.YAML);
+
+                }
+            }
+            if(!isChinese()){
+                if(new File(this.getDataFolder()+"/language.yml").exists()){
+                    if(!new File(this.getDataFolder()+"/language.yml").delete()) {
+                        this.getLogger().info("delete language.yml fail");
+                    }
+                }
+                if(!new File(this.getDataFolder()+"/config.yml").delete()){
+                    this.getLogger().info("delete config.yml fail");
+                }
+                this.saveResource("language/"+defaultLanguage+"/config.yml","config.yml",false);
+                config = new Config(this.getDataFolder()+"/config.yml",Config.YAML);
+
+            }
+        }
+        if (isChinese()) {
+            this.getLogger().info("插件语言设置为 §achs");
+        } else {
+            this.getLogger().info("plugin language was setting §eeng");
+        }
+
+
         init();
         getServer().getCommandMap().register("OreArea", new OreCommand(this));
         this.getServer().getPluginManager().registerEvents(new ListenerWindow(),this);
@@ -103,33 +146,61 @@ public class AreaMainClass extends PluginBase {
         money = new LoadMoney();
     }
 
+    @Override
+    public Config getConfig() {
+        return config;
+    }
+
     public void init(){
         if(!new File(this.getDataFolder()+AREA_NAME).exists()){
             if(!new File(this.getDataFolder()+AREA_NAME).mkdirs()){
-                this.getLogger().info("创建文件夹"+AREA_NAME+"失败....");
+                if(isChinese()){
+                    this.getLogger().info("创建文件夹"+AREA_NAME+"失败....");
+                }else{
+                    this.getLogger().info("create directory "+AREA_NAME+" fail....");
+                }
+
             }
         }
         if(!new File(this.getDataFolder()+PLAYER_NAME).exists()){
             if(!new File(this.getDataFolder()+PLAYER_NAME).mkdir()){
-                this.getLogger().info("创建文件夹"+PLAYER_NAME+"失败");
+                if(isChinese()){
+                    this.getLogger().info("创建文件夹"+PLAYER_NAME+"失败");
+                }else{
+                    this.getLogger().info("create directory"+PLAYER_NAME+"fail...");
+                }
+
             }
         }
-        if(!new File(this.getDataFolder()+LANGUAGE).exists()){
-            this.saveResource("language.yml");
+
+        if(!new File(this.getDataFolder()+"/language.yml").exists()){
+            this.saveResource("language/"+defaultLanguage+"/language.yml","language.yml",false);
         }
         if(!new File(this.getDataFolder()+BLOCKS).exists()){
             this.saveResource("blocks.yml");
         }
-        saveDefaultConfig();
-        reloadConfig();
+
         timeLoad = new LinkedList<>();
-        canSendInventory = getConfig().getBoolean("掉落物是否直接发送背包",true);
+        if(isChinese()) {
+            canSendInventory = getConfig().getBoolean("掉落物是否直接发送背包", true);
+        }else{
+            canSendInventory = getConfig().getBoolean("drop-inventory", true);
+        }
         language = new Config(this.getDataFolder()+LANGUAGE,Config.YAML);
+
         blocks = new Config(this.getDataFolder()+BLOCKS,Config.YAML);
-        timeLoad.addAll(getConfig().getStringList("刷新矿区时间段"));
+        if(isChinese()){
+            timeLoad.addAll(getConfig().getStringList("刷新矿区时间段"));
+        }else{
+            timeLoad.addAll(getConfig().getStringList("reset-time"));
+        }
         readAllFiles();
         readAllPlayer();
         readAllBlocks();
+    }
+
+    public static boolean isChinese(){
+        return "chs".equalsIgnoreCase(defaultLanguage);
     }
 
     boolean isCanSendInventory() {
@@ -248,35 +319,40 @@ public class AreaMainClass extends PluginBase {
      * 获取是否进入矿区提示
      * */
     boolean isSendJoinMessage(){
-        return getConfig().getBoolean("进入矿区是否提示");
+        if(isChinese()) {
+            return getConfig().getBoolean("进入矿区是否提示");
+        }else{
+            return getConfig().getBoolean("join-message");
+        }
     }
 
     /**
      * 获取是否离开矿区提示
      * */
     boolean isSendQuitMessage(){
-        return getConfig().getBoolean("离开矿区是否提示");
+
+        return isChinese()?getConfig().getBoolean("离开矿区是否提示"):getConfig().getBoolean("quit-message");
     }
 
     /**
      * 获取是否开启购买解锁
      * */
     public boolean isKeyCanOpen(){
-        return getConfig().getBoolean("是否开启玩家购买解锁");
+        return isChinese()?getConfig().getBoolean("是否开启玩家购买解锁"):getConfig().getBoolean("unlock-orearea-teleport");
     }
 
     /**
      * 获取是否显示传送粒子
      * */
     boolean canShowTransfer(){
-        return getConfig().getBoolean("是否显示粒子");
+        return isChinese()?getConfig().getBoolean("是否显示粒子"):getConfig().getBoolean("display-particles");
     }
 
     /**
      * 获取是否保护矿区世界
      * */
     boolean canProtectionLevel(){
-        return getConfig().getBoolean("是否保护矿区",false);
+        return isChinese()?getConfig().getBoolean("是否保护矿区",false):getConfig().getBoolean("protected-orearea");
     }
 
 
@@ -285,21 +361,21 @@ public class AreaMainClass extends PluginBase {
      * 获取传送时间
      * */
     int getTransferTime(){
-        return getConfig().getInt("传送时间");
+        return isChinese()?getConfig().getInt("传送时间"):getConfig().getInt("teleport-time");
     }
 
     /**
      * 获取玩家传送矿区是否提示
      * */
     public boolean canSendTransferMessage(){
-        return getConfig().getBoolean("玩家传送到矿区是否提示");
+        return isChinese()?getConfig().getBoolean("玩家传送到矿区是否提示"):getConfig().getBoolean("teleport-orearea-msg");
     }
 
     /**
      * 获取玩家传送矿区是否全服公告
      * */
     public boolean canSendTransferBroadCastMessage(){
-        return getConfig().getBoolean("玩家传送矿区是否全服公告");
+        return isChinese()?getConfig().getBoolean("玩家传送矿区是否全服公告"):getConfig().getBoolean("teleport-orearea-broadcast");
     }
 
 
@@ -307,7 +383,7 @@ public class AreaMainClass extends PluginBase {
      * 获取解锁矿区是否公告
      * */
     boolean canSendkeyArea(){
-        return getConfig().getBoolean("玩家解锁矿区是否公告");
+        return isChinese()?getConfig().getBoolean("玩家解锁矿区是否公告"):getConfig().getBoolean("unlock-orearea-broadcast");
     }
 
 
@@ -333,14 +409,14 @@ public class AreaMainClass extends PluginBase {
      * 获取显示类型
      * */
     public String getMessageType(){
-        return getConfig().getString("提示类型").toLowerCase();
+        return isChinese()?getConfig().getString("提示类型").toLowerCase():getConfig().getString("msg-type").toLowerCase();
     }
 
     /**
      * 获取显示类型
      * */
     public String getTransferMessageType(){
-        return getConfig().getString("玩家传送到矿区提示").toLowerCase();
+        return isChinese()?getConfig().getString("玩家传送到矿区提示").toLowerCase():getConfig().getString("teleport-orearea-msg-type").toLowerCase();
     }
 
 

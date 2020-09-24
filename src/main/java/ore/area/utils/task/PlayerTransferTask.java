@@ -54,7 +54,7 @@ public class PlayerTransferTask extends PluginTask<AreaMainClass> {
                 }
                 if(getOwner().canSendTransferMessage()){
                     Tools.sendMessage(player,AreaMainClass.getLang("transaction.area.scauss")
-                                    .replace("{player}","你")
+                                    .replace("{player}",AreaMainClass.isChinese()?"你":"yours")
                                             .replace("{name}",aClass.getName()),aClass.getSubMessage()
                             ,getOwner().getTransferMessageType());
                 }

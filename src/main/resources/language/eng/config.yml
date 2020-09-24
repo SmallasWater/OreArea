@@ -1,0 +1,55 @@
+#   ___              _
+#  / _ \ _ __ ___   / \   _ __ ___  __ _
+# | | | | '__/ _ \ / _ \ | '__/ _ \/ _` |
+# | |_| | | |  __// ___ \| | |  __/ (_| |
+#  \___/|_|  \___/_/   \_\_|  \___|\__,_|
+# After setting, the mining area is only refreshed at a fixed time,
+# otherwise there is no limit
+#  language
+#   - eng
+#   - chs
+language: eng
+
+# If you set up here, the mine will only refresh for a specified period of time.
+reset-time:
+  - "12:30 - 17:00"
+
+# Player will receive a message when they enter a ORE AREA.
+join-message: true
+
+# Player will receive a message when they leave a ORE AREA.
+quit-message: true
+
+# Different prompt types can be set here.
+# title
+# tip
+# popup
+# action
+# boss
+# msg
+msg-type: title
+
+# If set true,player can not teleport to the ORE AREA if they are not unlock the ORE AREA.
+unlock-orearea-teleport: true
+
+# Teleport countdown time
+teleport-time: 5
+
+# Whether to display transport particles
+display-particles: true
+
+# Whether to send a message to the player when the player teleport to the ORE AREA
+teleport-orearea-msg: true
+
+teleport-orearea-msg-type: title
+# Whether to broadcast a message when a player teleport to the ORE AREA
+teleport-orearea-broadcast: false
+
+# Whether to broadcast a message when a player teleport to the ORE AREA
+unlock-orearea-broadcast: true
+
+# If set true,the world that include ORE AREA will be protected,player can not break blocks outside the ORE AREA.
+protected-orearea: false
+
+# The ores will droped when the player's inventory is full.
+drop-inventory: true

@@ -1,5 +1,6 @@
 # 如果显示格式为title 则 sub-title 显示在 title下方
 # 不是则显示在内容后方
+language: "chs"
 area.lock: "§c关闭"
 area.unlock: "§a开启"
 area.lock.message: "§c§a{name}§c矿区已关闭\n§7请更换其他矿区"

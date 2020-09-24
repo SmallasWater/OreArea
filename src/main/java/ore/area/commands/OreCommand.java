@@ -108,7 +108,7 @@ public class OreCommand extends PluginCommand<AreaMainClass> {
             });
             if (helps.size() > 0) {
                 int page = 1;
-                int maxPage = (int)  Math.ceil(helps.size() / PAGE_COUNT);
+                int maxPage = (int)  Math.ceil(helps.size() / (float)PAGE_COUNT);
                 if (args.length > 1) {
                     boolean pass = false;
                     String command = args[1];

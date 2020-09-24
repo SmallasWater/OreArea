@@ -66,5 +66,9 @@ public abstract class SubCommand {
      * */
     public abstract String helpMessage();
 
+    public boolean isChinese(){
+        return AreaMainClass.isChinese();
+    }
+
 
 }
