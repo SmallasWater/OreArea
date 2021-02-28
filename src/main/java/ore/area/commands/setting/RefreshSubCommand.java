@@ -53,7 +53,7 @@ public class RefreshSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq refresh <矿区名称>";
+        return "§a/kq refresh <矿区名称> §7刷新矿区内的方块";
     }
 
     @Override

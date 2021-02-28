@@ -2,6 +2,7 @@ package ore.area.utils.player;
 
 
 import cn.nukkit.block.Block;
+import cn.nukkit.item.Item;
 import cn.nukkit.utils.Config;
 import ore.area.AreaMainClass;
 import ore.area.utils.area.AreaClass;
@@ -34,7 +35,7 @@ public class PlayerClass {
         this.breakBlocks = breakBlocks;
     }
 
-    public int getBreakBlockCount(Block block){
+    public int getBreakBlockCount(Item block){
         if(breakBlocks.containsKey(DefaultBlockClass.getBlockSaveString(block))){
             return breakBlocks.get(DefaultBlockClass.getBlockSaveString(block));
         }
@@ -56,7 +57,7 @@ public class PlayerClass {
         return keyAreas.contains(area);
     }
 
-    public void addCount(Block block){
+    public void addCount(Item block){
         if(AreaMainClass.getInstance().defaultBlocks.containsKey(DefaultBlockClass.getBlockSaveString(block))){
             if(breakBlocks.containsKey(DefaultBlockClass.getBlockSaveString(block))){
                 breakBlocks.put(DefaultBlockClass.getBlockSaveString(block),breakBlocks.get(DefaultBlockClass.getBlockSaveString(block)) + 1);

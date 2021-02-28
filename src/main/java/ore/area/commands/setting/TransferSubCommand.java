@@ -50,7 +50,7 @@ public class TransferSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq settransfer <矿区名称>";
+        return "§a/kq settransfer <矿区名称> §7设置矿区的传送点坐标";
     }
 
     @Override

@@ -148,18 +148,19 @@ public class ListenerEvents implements Listener {
         Block block = event.getBlock();
         Item[] item = event.getDrops();
         PlayerClass playerClass = PlayerClass.getPlayerClass(player.getName());
-        playerClass.addCount(block);
-        int count = playerClass.getBreakBlockCount(block);
-        LinkedList<String> strings = DefaultBlockClass.getSuccessByCount(block,count);
+        playerClass.addCount(block.toItem());
+        int count = playerClass.getBreakBlockCount(block.toItem());
+        LinkedList<String> strings = DefaultBlockClass.getSuccessByCount(block.toItem(),count);
         if(strings != null){
-            Achievement achievement = Achievement.achievements.get(count+DefaultBlockClass.getBlockSaveString(block));
+            Achievement achievement = Achievement.achievements.get(count+DefaultBlockClass.getBlockSaveString(block.toItem()));
             if(achievement != null){
-                player.awardAchievement(count+DefaultBlockClass.getBlockSaveString(block));
+                player.awardAchievement(count+DefaultBlockClass.getBlockSaveString(block.toItem()));
                 Tools.sendMessage(player,
                         Tools.getLanguage("player.break.block.success").replace("{block}"
                                 , ItemIDSunName.getIDByName(block.getId(),block.getDamage()))
                                 .replace("{count}",count+""));
-                Server.getInstance().getPluginManager().callEvent(new PlayerBreakBlockAchievementEvent(player,count+DefaultBlockClass.getBlockSaveString(block),block));
+                Server.getInstance().getPluginManager().callEvent(new PlayerBreakBlockAchievementEvent(player,count+
+                        DefaultBlockClass.getBlockSaveString(block.toItem()),block));
             }
 
             if(strings.size() > 0){

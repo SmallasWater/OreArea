@@ -47,9 +47,11 @@ public class CreateSubCommand extends SubCommand {
                         String name = args[1];
                         if (AreaClass.createAreaClass(name, new Vector(positions.get(0), positions.get(1)))) {
                             sender.sendMessage("§e>> §a恭喜，" + name + "矿区创建成功,记得设置矿区出生点哦");
+                            AreaMainClass.getInstance().pos.remove(sender);
                         } else {
                             sender.sendMessage("§e>> §c抱歉，" + name + "创建矿区失败..");
                             sender.sendMessage("§e>> §c原因: 矿区重复");
+                            AreaMainClass.getInstance().pos.remove(sender);
                         }
                     }
                 } else {
@@ -64,7 +66,7 @@ public class CreateSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq create <矿区名称>";
+        return "§a/kq create <矿区名称> §7创建矿区";
     }
 
     @Override

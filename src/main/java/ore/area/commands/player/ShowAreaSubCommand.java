@@ -86,7 +86,7 @@ public class ShowAreaSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq <show/showNext/showMax> <矿区名称(show)>";
+        return "§a/kq <show/showNext/showMax> <矿区名称(show)> §7弹出GUI (具体用法请执行/kq help show)";
     }
     @Override
     public String helpMessage() {

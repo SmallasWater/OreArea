@@ -131,9 +131,11 @@ public class AreaMainClass extends PluginBase {
         for(DefaultBlockClass defaultBlockClass:defaultBlocks.values()){
             LinkedHashMap<Integer,LinkedList<String>> success = defaultBlockClass.getSuccess();
             for(Integer i:success.keySet()){
-                Block block = defaultBlockClass.getBlock();
-                Achievement.add(i+DefaultBlockClass.getBlockSaveString(block),new Achievement("§d>>§a破坏 §e"+i+" §a次 "
-                        + ItemIDSunName.getIDByName(block.getId(),block.getDamage())+" §d<<"));
+                Block block = defaultBlockClass.getBlock().getBlock();
+                if(block.getId() != 0) {
+                    Achievement.add(i + DefaultBlockClass.getBlockSaveString(defaultBlockClass.getBlock()), new Achievement("§d>>§a破坏 §e" + i + " §a次 "
+                            + ItemIDSunName.getIDByName(block.getId(), block.getDamage()) + " §d<<"));
+                }
             }
 
         }

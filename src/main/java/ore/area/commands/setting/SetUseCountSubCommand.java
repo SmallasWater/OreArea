@@ -56,7 +56,7 @@ public class SetUseCountSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq sc <矿区名称> <次数>";
+        return "§a/kq sc <矿区名称> <次数> §7设置矿区可以进入的次数";
     }
 
     @Override

@@ -8,6 +8,7 @@ import cn.nukkit.item.ItemFirework;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
+import cn.nukkit.level.particle.DustParticle;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.nbt.NBTIO;
 import cn.nukkit.nbt.tag.CompoundTag;
@@ -15,6 +16,7 @@ import cn.nukkit.nbt.tag.DoubleTag;
 import cn.nukkit.nbt.tag.FloatTag;
 import cn.nukkit.nbt.tag.ListTag;
 import cn.nukkit.scheduler.Task;
+import cn.nukkit.utils.BlockColor;
 import cn.nukkit.utils.DyeColor;
 import ore.area.AreaMainClass;
 import ore.area.utils.area.AreaClass;
@@ -124,6 +126,31 @@ public class Tools {
             block = Block.get(Integer.parseInt(name));
         }
         return new BlockClass(block,value);
+    }
+
+    public static void showParticle(Vector data, Level level,Player player){
+        Vector vector = data.clone().sort();
+        BlockColor color = new BlockColor(255,255,255);
+        int x,y,z;
+        for(y = vector.getStartY();y <= vector.getEndY();y++){
+            if(y == vector.getStartY() || y == vector.getEndY()){
+                for (z = vector.getStartZ(); z <= vector.getEndZ(); z++) {
+                    level.addParticle(new DustParticle(new Vector3(vector.getStartX(), y, z), color));
+                    level.addParticle(new DustParticle(new Vector3(vector.getEndX(), y, z), color));
+                }
+                for(x = vector.getStartX(); x<vector.getEndX();x++){
+                    level.addParticle(new DustParticle(new Vector3(x, y, vector.getStartZ()), color),player);
+                    level.addParticle(new DustParticle(new Vector3(x, y, vector.getEndZ()), color),player);
+                }
+            }else{
+                level.addParticle(new DustParticle(new Vector3(vector.getStartX(), y, vector.getStartZ()), color),player);
+                level.addParticle(new DustParticle(new Vector3(vector.getEndX(), y, vector.getStartZ()), color),player);
+                level.addParticle(new DustParticle(new Vector3(vector.getEndX(), y, vector.getEndZ()), color),player);
+                level.addParticle(new DustParticle(new Vector3(vector.getStartX(), y, vector.getEndZ()), color),player);
+            }
+
+        }
+
     }
 
 

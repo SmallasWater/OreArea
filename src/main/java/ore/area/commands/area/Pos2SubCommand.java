@@ -1,11 +1,16 @@
 package ore.area.commands.area;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 
 import cn.nukkit.level.Position;
+import cn.nukkit.scheduler.PluginTask;
+import javafx.concurrent.Task;
 import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
+import ore.area.utils.Tools;
+import ore.area.utils.area.Vector;
 
 import java.util.LinkedList;
 
@@ -52,6 +57,17 @@ public class Pos2SubCommand extends SubCommand {
                         , ((Player) sender).getFloorZ(), ((Player) sender).getLevel());
                 positions.add(position);
                 AreaMainClass.getInstance().pos.put((Player) sender, positions);
+                Server.getInstance().getScheduler().scheduleRepeatingTask(AreaMainClass.getInstance(), new PluginTask<AreaMainClass>(AreaMainClass.getInstance()) {
+                    @Override
+                    public void onRun(int i) {
+                        if(AreaMainClass.getInstance().pos.containsKey(sender)){
+                            Vector vector = new Vector(positions.get(0),positions.get(1));
+                            Tools.showParticle(vector,position.level, (Player) sender);
+                        }else{
+                            this.cancel();
+                        }
+                    }
+                },5);
                 sender.sendMessage("§e>> §6第二点创建成功.. §7请输入/kq 创建 <名称> 创建一个矿区吧");
                 sender.sendMessage("§e>> §a第二点坐标: §6x: " + position.x + " y: " + position.y + " z: " + position.z);
             }
@@ -65,6 +81,6 @@ public class Pos2SubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq pos2";
+        return "§a/kq pos2 §7设置矿区第二点";
     }
 }

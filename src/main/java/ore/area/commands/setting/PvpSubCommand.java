@@ -48,7 +48,7 @@ public class PvpSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq pvp <矿区名称>";
+        return "§a/kq pvp <矿区名称> §7设置是否允许玩家在矿区内PVP";
     }
 
     @Override

@@ -2,7 +2,9 @@ package ore.area.utils.area;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
+import cn.nukkit.block.BlockUnknown;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemBlock;
 import cn.nukkit.item.ItemPickaxeDiamond;
 import cn.nukkit.utils.Config;
 import ore.area.AreaMainClass;
@@ -16,7 +18,7 @@ import java.util.Map;
  * @author SmallasWater
  */
 public class DefaultBlockClass {
-    private Block block;
+    private Item block;
 
     private double sellMoney;
 
@@ -27,12 +29,12 @@ public class DefaultBlockClass {
      *     1000: []*/
     private LinkedHashMap<Integer, LinkedList<String>> success = new LinkedHashMap<>();
 
-    private DefaultBlockClass(Block block, double sellMoney){
+    private DefaultBlockClass(Item block, double sellMoney){
         this.block = block;
         this.sellMoney = sellMoney;
     }
 
-    public static void createDefaultBlock(Block block, double sellMoney){
+    public static void createDefaultBlock(Item block, double sellMoney){
         DefaultBlockClass blockClass = new DefaultBlockClass(block,sellMoney);
         if(!AreaMainClass.getInstance().defaultBlocks.containsKey(DefaultBlockClass.getBlockSaveString(block))){
             AreaMainClass.getInstance().defaultBlocks.put(DefaultBlockClass.getBlockSaveString(block),blockClass);
@@ -44,7 +46,7 @@ public class DefaultBlockClass {
         blockClass.save();
     }
 
-    public static DefaultBlockClass getInstance(Block block){
+    public static DefaultBlockClass getInstance(Item block){
         for(DefaultBlockClass defaultBlocks:AreaMainClass.getInstance().defaultBlocks.values()){
             if(DefaultBlockClass.getBlockSaveString(defaultBlocks.block).equals(DefaultBlockClass.getBlockSaveString(block))){
                 return defaultBlocks;
@@ -61,18 +63,18 @@ public class DefaultBlockClass {
         save();
     }
 
-    public static Block getBlockByString(String id){
-        Block block;
+    public static Item getBlockByString(String id){
+        Item block;
         if(id.split(":").length > 1){
-            block = Block.get(Integer.parseInt(id.split(":")[0]),Integer.parseInt(id.split(":")[1]));
+            block = Item.get(Integer.parseInt(id.split(":")[0]),Integer.parseInt(id.split(":")[1]));
         }else{
-            block = Block.get(Integer.parseInt(id.split(":")[0]),0);
+            block = Item.get(Integer.parseInt(id.split(":")[0]),0);
         }
         return block;
     }
 
     public static DefaultBlockClass getInstance(String id,Map map){
-        Block block = getBlockByString(id);
+        Item block = getBlockByString(id);
         double sellMoney = (double) map.get("sellmoney");
         DefaultBlockClass blockClass = new DefaultBlockClass(block,sellMoney);
         LinkedHashMap<Integer,LinkedList<String>> success = new LinkedHashMap<>();
@@ -88,7 +90,7 @@ public class DefaultBlockClass {
         return blockClass;
     }
 
-    public static LinkedList<String> getSuccessByCount(Block block,int count){
+    public static LinkedList<String> getSuccessByCount(Item block,int count){
         LinkedList<String> linkedList = null;
         DefaultBlockClass blockClass = DefaultBlockClass.getInstance(block);
         if(blockClass != null){
@@ -107,14 +109,21 @@ public class DefaultBlockClass {
         return linkedList;
     }
 
-    public Block getBlock() {
+    public Item getBlock() {
         return block;
     }
 
     public Item getItem(){
-        Item item = getBlock().getDrops(new ItemPickaxeDiamond())[0];
-        item.setCount(1);
-        return item;
+        Block block = ItemBlock.get(getBlock().getId(),getBlock().getDamage()).getBlock();
+        if(block.getId() == 0){
+            Item item = getBlock().clone();
+            item.setCount(1);
+            return item;
+        }else{
+            Item item =block.getDrops(new ItemPickaxeDiamond())[0];
+            item.setCount(1);
+            return item;
+        }
     }
 
     public double getSellMoney() {
@@ -148,13 +157,13 @@ public class DefaultBlockClass {
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof DefaultBlockClass){
-            Block block = ((DefaultBlockClass) obj).getBlock();
+            Item block = ((DefaultBlockClass) obj).getBlock();
             return ((block.getId()+":"+block.getDamage()).equals(this.block.getId()+":"+this.block.getDamage()));
         }
         return false;
     }
 
-    public static String getBlockSaveString(Block block){
+    public static String getBlockSaveString(Item block){
         if(block.getDamage() != 0){
             return block.getId()+":"+block.getDamage();
         }

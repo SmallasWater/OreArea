@@ -46,7 +46,7 @@ public class ClearSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq clean <"+(isChinese()?"矿区名称":"name")+">";
+        return "§a/kq clean <"+(isChinese()?"矿区名称":"name")+"> §7清空矿区内的所有方块";
     }
 
     @Override

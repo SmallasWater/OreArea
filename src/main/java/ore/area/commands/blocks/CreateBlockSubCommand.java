@@ -38,13 +38,9 @@ public class CreateBlockSubCommand extends SubCommand {
                 double m = Double.parseDouble(args[1]);
                 Item item = ((Player) sender).getInventory().getItemInHand();
                 if(item.getId() != 0){
-                    Block block = item.getBlock();
-                    if(block != null && block.getId() != 0){
-                        DefaultBlockClass.createDefaultBlock(block,m);
-                        sender.sendMessage("§e>> §a成功将方块: (ID: "+block.getId()+") 设置价格: "+m);
-                    }else{
-                        sender.sendMessage("§e>> §c请手持方块!!");
-                    }
+                    DefaultBlockClass.createDefaultBlock(item,m);
+                    sender.sendMessage("§e>> §a成功将物品: (ID: "+item.getId()+") 设置价格: "+m);
+
                 }else{
                     sender.sendMessage("§e>> §c请不要手持空气");
                 }
@@ -56,11 +52,11 @@ public class CreateBlockSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq cb <金钱>";
+        return "§a/kq cb <金钱> §7设置手持物品的回收价格";
     }
 
     @Override
     public String helpMessage() {
-        return " §7设置手持方块§l掉落物§r§7的回收价格  \n§c条件: [需设置价格,需手持方块,在游戏内执行] §2权限组: (ore.area.kq.cb)";
+        return " §7设置手持物品(方块)§l掉落物§r§7的回收价格  \n§c条件: [需设置价格,需手持物品,在游戏内执行] §2权限组: (ore.area.kq.cb)";
     }
 }

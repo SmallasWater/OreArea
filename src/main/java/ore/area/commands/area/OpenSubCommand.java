@@ -50,7 +50,7 @@ public class OpenSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq open <矿区名称> ";
+        return "§a/kq open <矿区名称> §7开放一个矿区 ";
     }
 
     @Override

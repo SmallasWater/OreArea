@@ -59,7 +59,7 @@ public class PriceSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setprice <矿区名称> <价格>";
+        return "§a/kq setprice <矿区名称> <价格> §7设置玩家传送到矿区的价格[使用UI传送]";
     }
 
     @Override

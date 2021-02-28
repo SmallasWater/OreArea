@@ -50,7 +50,7 @@ public class Pos1SubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq pos1";
+        return "§a/kq pos1 §7设置矿区第一点";
     }
     @Override
     public String helpMessage() {

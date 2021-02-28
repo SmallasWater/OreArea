@@ -39,7 +39,7 @@ public class SellInvSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq sellinv";
+        return "§a/kq sellinv §7出售背包内设置的掉落物价格";
     }
 
     @Override

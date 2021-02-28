@@ -49,7 +49,7 @@ public class SetLastSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setlast <矿区名称> <矿区名>";
+        return "§a/kq setlast <矿区名称> <矿区名> §7设置解锁矿区前首先解锁的矿区";
     }
 
     @Override

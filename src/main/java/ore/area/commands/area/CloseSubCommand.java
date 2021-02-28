@@ -53,7 +53,7 @@ public class CloseSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq close <矿区名称>";
+        return "§a/kq close <矿区名称> §7将矿区关闭 若矿区内存在玩家 则将玩家传送到服务器默认出生点";
     }
 
     @Override

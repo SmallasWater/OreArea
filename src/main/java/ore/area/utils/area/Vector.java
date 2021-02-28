@@ -45,7 +45,7 @@ public class Vector implements Cloneable{
 
 
 
-    public void sort(){
+    public Vector sort(){
         int temp;
         if(this.startX > this.endX){
             temp = this.endX;
@@ -64,6 +64,7 @@ public class Vector implements Cloneable{
             this.endZ = this.startZ;
             this.startZ = temp;
         }
+        return this;
     }
 
     Position getPos1(){

@@ -59,7 +59,7 @@ public class MoneySubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setmoney <矿区名称> <价格>";
+        return "§a/kq setmoney <矿区名称> <价格> §7设置解锁矿区所花费的金钱";
     }
 
     @Override

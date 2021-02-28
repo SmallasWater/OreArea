@@ -72,7 +72,7 @@ public class AddPlayerUseCountSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq ac <玩家名> <矿区名称> <次数(max为满次数)> ";
+        return "§a/kq ac <玩家名> <矿区名称> <次数(max为满次数)> §7增加玩家进入矿区的次数 ";
     }
 
     @Override

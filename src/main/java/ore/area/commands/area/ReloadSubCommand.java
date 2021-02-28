@@ -44,7 +44,7 @@ public class ReloadSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq reload";
+        return "§a/kq reload §7将对配置文件进行覆盖式读取";
     }
 
     @Override

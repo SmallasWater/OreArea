@@ -167,6 +167,7 @@ public class AreaClass {
                     cn.setBlock();
                     return true;
                 }
+
             }
             AreaMainClass.getInstance().sort();
         }

@@ -53,7 +53,7 @@ public class SetUseTimeSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setut <矿区名称> <使用时间(秒) -1为永久>";
+        return "§a/kq setut <矿区名称> <使用时间(秒) -1为永久> §7设置玩家在矿区内的使用时间";
     }
 
     @Override

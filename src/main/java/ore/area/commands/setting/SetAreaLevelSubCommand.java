@@ -63,7 +63,7 @@ public class SetAreaLevelSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq setLevel <矿区名称> <等级>";
+        return "§a/kq setLevel <矿区名称> <等级> §7设置矿区的等级 ";
     }
 
     @Override

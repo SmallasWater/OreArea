@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.block.Block;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemBlock;
 import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
 import ore.area.utils.area.DefaultBlockClass;
@@ -37,18 +38,18 @@ public class AddSuccessSubCommand extends SubCommand {
             int c = Integer.parseInt(args[1]);
             Item item = ((Player) sender).getInventory().getItemInHand();
             if(item.getId() != 0){
-                Block block = Block.get(item.getId(),item.getDamage());
-                if(block != null){
-                    if(AreaMainClass.getInstance().defaultBlocks.containsKey(DefaultBlockClass.getBlockSaveString(block))){
-                        DefaultBlockClass defaultBlockClass = AreaMainClass.getInstance().defaultBlocks.get(DefaultBlockClass.getBlockSaveString(block));
+                Block block = ItemBlock.get(item.getId(),item.getDamage()).getBlock();
+                if(block.getId() != 0){
+                    if(AreaMainClass.getInstance().defaultBlocks.containsKey(DefaultBlockClass.getBlockSaveString(item))){
+                        DefaultBlockClass defaultBlockClass = AreaMainClass.getInstance().defaultBlocks.get(DefaultBlockClass.getBlockSaveString(item));
                         defaultBlockClass.addSuccess(c);
                     }else{
-                        DefaultBlockClass.createDefaultBlock(block,0.0D);
-                        DefaultBlockClass defaultBlockClass = AreaMainClass.getInstance().defaultBlocks.get(DefaultBlockClass.getBlockSaveString(block));
+                        DefaultBlockClass.createDefaultBlock(item,0.0D);
+                        DefaultBlockClass defaultBlockClass = AreaMainClass.getInstance().defaultBlocks.get(DefaultBlockClass.getBlockSaveString(item));
                         defaultBlockClass.addSuccess(c);
 
                     }
-                    sender.sendMessage("§e>> §a成功设置方块: (ID: "+block.getId()+") 成就条件: "+c);
+                    sender.sendMessage("§e>> §a成功设置物品: (ID: "+item.getId()+") 成就条件: "+c);
                 }else{
                     sender.sendMessage("§e>> §c请手持方块!!");
                 }
@@ -62,7 +63,7 @@ public class AddSuccessSubCommand extends SubCommand {
 
     @Override
     public String getHelp() {
-        return "§a/kq success <数量>";
+        return "§a/kq success <数量> §7将手中的方块id设置为破坏次数成就";
     }
 
     @Override

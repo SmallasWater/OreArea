@@ -1,6 +1,6 @@
 name: OreArea
 main: ore.area.AreaMainClass
-version: 1.3.3
+version: 1.3.5
 api:
   - 1.0.9
 author: 若水
