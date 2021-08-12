@@ -3,9 +3,11 @@ package ore.area.commands.setting;
 import cn.nukkit.command.CommandSender;
 import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
-import ore.area.utils.Tools;
 import ore.area.utils.area.AreaClass;
 
+/**
+ * @author SmallasWater
+ */
 public class SetLastSubCommand extends SubCommand {
 
     public SetLastSubCommand(AreaMainClass plugin) {

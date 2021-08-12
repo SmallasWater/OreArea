@@ -438,7 +438,7 @@ public class ListenerEvents implements Listener {
 //        AreaMainClass.getInstance().useTime.remove(player.getName());
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onPVP(EntityDamageEvent event){
         if(event instanceof EntityDamageByEntityEvent){
             Entity entity = event.getEntity();

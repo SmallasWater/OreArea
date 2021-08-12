@@ -32,13 +32,12 @@ public class ReloadSubCommand extends SubCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args) {
         sender.sendMessage("§e>> §a重新读取成功");
-        for(AreaClass areaClass:AreaMainClass.getInstance().areas.values()){
-            areaClass.save();
-        }
         for(PlayerClass playerClass:AreaMainClass.getInstance().playerClasses.values()){
             playerClass.save();
         }
         AreaMainClass.getInstance().init();
+
+
         return true;
     }
 

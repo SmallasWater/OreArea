@@ -24,15 +24,16 @@ public class CreateWindow {
                 ,AreaMainClass.getLang("gui.menu.content"));
         PlayerClass playerClass = PlayerClass.getPlayerClass(player.getName());
         boolean canKey = AreaMainClass.getInstance().isKeyCanOpen();
+        boolean key = false;
         for(AreaClass area:Tools.sqrtAreaClass()){
             if(canKey){
-                canKey = playerClass.canKey(area.getName());
+                key = playerClass.canKey(area.getName());
             }
 
             String t = AreaMainClass.getLang("gui.menu.button");
             t = t.replace("{level}",area.getLevel()+"")
                     .replace("{name}",area.getName())
-                    .replace("{lock}",!canKey ?
+                    .replace("{lock}",!key ?
                             AreaMainClass.getLang("gui.area.lock"):
                             AreaMainClass.getLang("gui.area.unlock"));
             simple.addButton(new ElementButton(t,area.getButtonImage()));

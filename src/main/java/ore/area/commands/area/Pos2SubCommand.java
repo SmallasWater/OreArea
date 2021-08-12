@@ -6,7 +6,6 @@ import cn.nukkit.command.CommandSender;
 
 import cn.nukkit.level.Position;
 import cn.nukkit.scheduler.PluginTask;
-import javafx.concurrent.Task;
 import ore.area.AreaMainClass;
 import ore.area.commands.SubCommand;
 import ore.area.utils.Tools;
