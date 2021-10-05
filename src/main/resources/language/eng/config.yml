@@ -53,3 +53,6 @@ protected-orearea: false
 
 # The ores will droped when the player's inventory is full.
 drop-inventory: true
+
+# Does the player fly when he cannot enter the mining area
+konckback-player: false

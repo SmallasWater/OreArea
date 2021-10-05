@@ -347,7 +347,7 @@ public class ListenerEvents implements Listener {
     public void onTimeOut(PlayerUseTimeEndEvent event){
         Player player = event.getPlayer();
         player.teleport(event.getAreaClass().getTransfer());
-        Tools.konkBack(player,event.getAreaClass().getTransfer());
+        Tools.knockBack(player,event.getAreaClass().getTransfer());
         join.remove(player);
         Tools.sendMessage(player,AreaMainClass.getLang("player.area.time.out"));
     }
@@ -372,7 +372,7 @@ public class ListenerEvents implements Listener {
                 if(!map.containsKey(event.getAreaClass().getName())) {
                     if (playerClass.getJoin(event.getAreaClass().getName()) == 0 && event.getAreaClass().getJoinCount() != -1) {
                         Tools.sendMessage(player, Tools.getLanguage("player.join.area.count.max").replace("{name}", event.getAreaClass().getName()));
-                        Tools.konkBack(player, event.getAreaClass().getPos().getCenterPosition());
+                        Tools.knockBack(player, event.getAreaClass().getPos().getCenterPosition());
                         event.setCancelled();
                         return;
                     }
@@ -385,12 +385,12 @@ public class ListenerEvents implements Listener {
 
             }else{
                 Tools.sendMessage(player,Tools.getLanguage("player.not.key.area").replace("{name}",event.getAreaClass().getName()));
-                Tools.konkBack(player, event.getAreaClass().getPos().getCenterPosition());
+                Tools.knockBack(player, event.getAreaClass().getPos().getCenterPosition());
                 return;
             }
         }else{
             Tools.sendMessage(player,Tools.getLanguage("area.lock.message").replace("{name}",event.getAreaClass().getName()));
-            Tools.konkBack(player, event.getAreaClass().getPos().getCenterPosition());
+            Tools.knockBack(player, event.getAreaClass().getPos().getCenterPosition());
             return;
         }
         AreaClass areaClass = event.getAreaClass();

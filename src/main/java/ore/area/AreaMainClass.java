@@ -329,6 +329,13 @@ public class AreaMainClass extends PluginBase {
     }
 
     /**
+     * 玩家无法进入矿区的时候是否击飞
+     * */
+    public boolean isKonckBackPlayer(){
+        return isChinese()?getConfig().getBoolean("是否击飞玩家",false):getConfig().getBoolean("konckback-player",false);
+    }
+
+    /**
      * 获取是否离开矿区提示
      * */
     boolean isSendQuitMessage(){

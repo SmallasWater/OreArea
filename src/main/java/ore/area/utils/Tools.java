@@ -114,8 +114,10 @@ public class Tools {
         return new Vector(level,sx,ex,sy,ey,sz,ez);
     }
 
-    public static void konkBack(Player player,Position vector){
-        player.knockBack(player,0,(player.x - vector.x),(player.z - vector.z),0.8);
+    public static void knockBack(Player player,Position vector){
+        if(AreaMainClass.getInstance().isKonckBackPlayer()) {
+            player.knockBack(player, 0, (player.x - vector.x), (player.z - vector.z), 0.8);
+        }
     }
 
     public static BlockClass getBlockClassByMap(String name, int value){
