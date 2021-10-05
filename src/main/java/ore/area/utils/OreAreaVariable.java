@@ -22,7 +22,9 @@ public class OreAreaVariable extends BaseVariable {
         String time = "§c不在矿区范围";
         String reset = "§c不在矿区范围";
         String name = "§c无";
+        int level = 0;
         if(areaClass != null){
+            level = areaClass.getLevel();
             if(AreaMainClass.getInstance().useTime.containsKey(player.getName())) {
                 LinkedHashMap<String,Integer> map = AreaMainClass.getInstance().useTime.get(player.getName());
                 if(map.containsKey(areaClass.getName())){
@@ -65,6 +67,7 @@ public class OreAreaVariable extends BaseVariable {
         addStrReplaceString("{oreareaTime}",time);
         addStrReplaceString("{oreareaReset}",reset);
         addStrReplaceString("{oreareaName}",name);
+        addStrReplaceString("{oreareaLevel}",level+"");
 
     }
 }

@@ -86,9 +86,10 @@ public class ListenerEvents implements Listener {
         if(player.isOp()){
             return;
         }
+        String name;
         if(AreaMainClass.getInstance().canProtectionLevel()){
             if(Tools.canInAreaLevel(block)){
-                String name = Tools.getPlayerTouchArea(block);
+                name = Tools.getPlayerTouchArea(block);
                 if(name != null){
                     AreaClass areaClass = AreaClass.getAreaClass(name);
                     if(areaClass != null){
@@ -113,7 +114,7 @@ public class ListenerEvents implements Listener {
                 }
             }
         }else{
-            String name = Tools.getPlayerTouchArea(block);
+            name = Tools.getPlayerTouchArea(block);
             if(name != null){
                 AreaClass areaClass = AreaClass.getAreaClass(name);
                 if(areaClass != null){

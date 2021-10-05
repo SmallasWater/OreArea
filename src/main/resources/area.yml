@@ -24,7 +24,7 @@ transferMoney: 100.0
 key: true
 
 last-area: ""
-message: "§a新手矿区 一切发家致富的开始?\n 主要物资:>> 石头>> 木头"
+message: "§f新手矿区 一切发家致富的开始?\n§e主要物资:§7>>§b 石头 木头"
 subMessage: "一切的开始..."
 buttonImage: "textures/items/diamond_pickaxe"
 spawnBlock:
